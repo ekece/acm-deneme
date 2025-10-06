@@ -1,0 +1,24 @@
+apiVersion: argoproj.io/v1alpha1
+kind: ApplicationSet
+metadata:
+  name: acm-policies
+  namespace: openshift-gitops
+spec:
+  generators:
+    - git:
+        repoURL: "https://github.com/ekece/acm-deneme.git"
+        revision: HEAD
+        directories:
+        - path: clusters/*
+  template:
+    metadata:
+      name: "{{path.basename}}"
+    spec:
+      project: default
+      source:
+        repoURL: "https://github.com/ekece/acm-deneme.git"
+        targetRevision: HEAD
+        path: "{{path}}"
+      destination:
+        server: "https://kubernetes.default.svc"
+        namespace: acm-policies 

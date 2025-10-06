@@ -1,0 +1,17 @@
+apiVersion: policy.open-cluster-management.io/v1
+kind: PolicyGenerator
+metadata:
+  name:   local-policy-generator
+policyDefaults:
+  namespace: acm-policies
+  placement:
+    labelSelector:
+      matchExpressions:
+        - key: name
+          operator: In
+          values:
+            - local
+policies:
+  - name: example-policy-local
+    manifests:
+      - path: example-policy
