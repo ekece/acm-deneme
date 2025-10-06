@@ -10,7 +10,7 @@ policyDefaults:
         - key: name
           operator: In
           values:
-            - local
+            - local-cluster
 policies:
   - name: example-policy-local
     manifests:
